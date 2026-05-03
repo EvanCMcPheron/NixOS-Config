@@ -10,6 +10,8 @@ end
 require('gui')
 
 vim.opt.termguicolors = true
+vim.opt.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
+vim.o.showtabline = 2
 
 require('pack_changed_callbacks')
 

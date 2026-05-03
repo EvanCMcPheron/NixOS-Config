@@ -98,6 +98,10 @@
       "rev": "a049339328e2599ad6e85a69fa034ac501e921b2",
       "src": "https://github.com/folke/snacks.nvim"
     },
+    "tabby.nvim": {
+      "rev": "3c130e1fcb598ce39a9c292847e32d7c3987cf11",
+      "src": "https://github.com/nanozuki/tabby.nvim"
+    },
     "terminal.nvim": {
       "rev": "2bd1545caf89d075b6bc2a1a5c56ff177edcf3f6",
       "src": "https://github.com/rebelot/terminal.nvim"

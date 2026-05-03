@@ -24,35 +24,35 @@ require('which-key').add {
 	{
 		mode = { "n", "v" },
 		-- Which-Key
-		{ "<leader>?",  function() Snacks.picker.keymaps() end,                                 desc = "Find Bindings" },
+		{ "<leader>?",  function() Snacks.picker.keymaps() end,                      desc = "Find Bindings" },
 
 		-- Coding (mostly lsp) stuff
 		{ "<leader>c",  desc = "Coding Tools" },
-		{ "<leader>cu", "<cmd>UndotreeToggle<CR>",                                              desc = "Toggle Undo Tree" },
-		{ "<leader>cr", vim.lsp.buf.rename,                                                     desc = "Rename symbol" },
-		{ "<leader>ca", vim.lsp.buf.code_action,                                                desc = "Code action" },
-		{ "<leader>ce", vim.diagnostic.open_float,                                              desc = "Line diagnostics" },
-		{ "<leader>cf", vim.lsp.buf.format,                                                     desc = "Code Format" },
+		{ "<leader>cu", "<cmd>UndotreeToggle<CR>",                                   desc = "Toggle Undo Tree" },
+		{ "<leader>cr", vim.lsp.buf.rename,                                          desc = "Rename symbol" },
+		{ "<leader>ca", vim.lsp.buf.code_action,                                     desc = "Code action" },
+		{ "<leader>ce", vim.diagnostic.open_float,                                   desc = "Line diagnostics" },
+		{ "<leader>cf", vim.lsp.buf.format,                                          desc = "Code Format" },
 		{ "<leader>cj", desc = "Toggle Splitjoin" }, -- edit in mini.lua
-		{ "gd",         function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
-		{ "gD",         function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-		{ "gr",         function() Snacks.picker.lsp_references() end,                          nowait = true,                  desc = "References" },
-		{ "gI",         function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
-		{ "gy",         function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
-		{ "gai",        function() Snacks.picker.lsp_incoming_calls() end,                      desc = "C[a]lls Incoming" },
-		{ "gao",        function() Snacks.picker.lsp_outgoing_calls() end,                      desc = "C[a]lls Outgoing" },
-		{ "K",          vim.lsp.buf.hover,                                                      desc = "Hover" },
-		{ "[d",         vim.diagnostic.goto_prev,                                               desc = "Prev diagnostic" },
-		{ "]d",         vim.diagnostic.goto_next,                                               desc = "Next diagnostic" },
+		{ "gd",         function() Snacks.picker.lsp_definitions() end,              desc = "Goto Definition" },
+		{ "gD",         function() Snacks.picker.lsp_declarations() end,             desc = "Goto Declaration" },
+		{ "gr",         function() Snacks.picker.lsp_references() end,               nowait = true,                          desc = "References" },
+		{ "gI",         function() Snacks.picker.lsp_implementations() end,          desc = "Goto Implementation" },
+		{ "gy",         function() Snacks.picker.lsp_type_definitions() end,         desc = "Goto T[y]pe Definition" },
+		{ "gai",        function() Snacks.picker.lsp_incoming_calls() end,           desc = "C[a]lls Incoming" },
+		{ "gao",        function() Snacks.picker.lsp_outgoing_calls() end,           desc = "C[a]lls Outgoing" },
+		{ "K",          vim.lsp.buf.hover,                                           desc = "Hover" },
+		{ "[d",         vim.diagnostic.goto_prev,                                    desc = "Prev diagnostic" },
+		{ "]d",         vim.diagnostic.goto_next,                                    desc = "Next diagnostic" },
 
 		-- Harpoon (2)
-		{ "<leader>h", desc = "Harpoon" },
-		{"<leader>hl", function() Harpoon.ui:toggle_quick_menu(Harpoon:list()) end, desc = "Toggle Menu"},
-		{"<leader>hm", function() Harpoon:list():add() end, desc = "Mark buffer"},
-		{"<leader>hn", function() Harpoon:list():select(1) end, desc = "Select Harpoon Buffer 1"},
-		{"<leader>hh", function() Harpoon:list():select(2) end, desc = "Select Harpoon Buffer 2"},
-		{"<leader>ht", function() Harpoon:list():select(3) end, desc = "Select Harpoon Buffer 3"},
-		{"<leader>hs", function() Harpoon:list():select(4) end, desc = "Select Harpoon Buffer 4"},
+		{ "<leader>h",  desc = "Harpoon" },
+		{ "<leader>hl", function() Harpoon.ui:toggle_quick_menu(Harpoon:list()) end, desc = "Toggle Menu" },
+		{ "<leader>hm", function() Harpoon:list():add() end,                         desc = "Mark buffer" },
+		{ "<leader>hn", function() Harpoon:list():select(1) end,                     desc = "Select Harpoon Buffer 1" },
+		{ "<leader>hh", function() Harpoon:list():select(2) end,                     desc = "Select Harpoon Buffer 2" },
+		{ "<leader>ht", function() Harpoon:list():select(3) end,                     desc = "Select Harpoon Buffer 3" },
+		{ "<leader>hs", function() Harpoon:list():select(4) end,                     desc = "Select Harpoon Buffer 4" },
 
 		-- Surround (edit actual bindings in mini.lua)
 		{ '<leader>s',  desc = 'Surround Commands' },
@@ -65,10 +65,20 @@ require('which-key').add {
 
 		-- snacks bindings
 		{ "<leader>u",  desc = "Settings" },
+		{ "<leader>ub", require("darklight").color_switch,                           desc = "Switch from Light to Dark Mode" },
+		{ "<leader>ur", function()
+			vim.ui.input({ prompt = "New Tab Name: " }, function(name)
+				if name and name ~= "" then
+					vim.cmd("Tabby rename_tab " .. name)
+				end
+			end)
+		end, desc = "Rename Tab" },
+
 		{ "<leader>/",  function() Snacks.picker.grep(snacks_picker_conf) end,                  desc = "Live Grep" },
 		{ "<leader>:",  function() Snacks.picker.command_history(snacks_picker_conf) end,       desc = "Search Command History" },
 
-		{ "<leader>g",  desc = "Git" },
+		{ "<leader>n",  desc = "Create..." },
+		{ "<leader>nt", "<cmd>tabnew<CR>",                                                      desc = "Create New Tab" },
 
 		{ "<leader>f",  desc = "Find" },
 		-- { "<leader>ff", function() Snacks.picker.files(require("confs.snacks").picker.files) end, desc = "Find Files" },
@@ -84,6 +94,7 @@ require('which-key').add {
 		{ "<leader>fc", function() Snacks.picker.colorschemes() end,                            desc = "Find Colorschemes" },
 		{ "<leader>fr", function() Snacks.picker.registers() end,                               desc = "Find Registers" },
 		{ "<leader>fd", function() Snacks.picker.diagnostics() end,                             desc = "Find Diagnostics" },
+		{ "<leader>fw", "<cmd>Tabby pick_window<CR>",                                           desc = "Find Tab" },
 		{ "<leader>ft",
 			function()
 				Snacks.picker.todo_comments { keywords = { "TODO", "FIX", "FIXME", "ISSUE", "PROBLEM" } }
@@ -93,31 +104,33 @@ require('which-key').add {
 		{ "<leader>d",  desc = "Destruction and the likes" },
 		{ "<leader>dn", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Destroy Current Notifications" },
 		{ "<leader>dd", function() Snacks.bufdelete() end,                                           desc = "Destroy Current Buffer" },
-
-		-- Theme Switching (light / dark)
-		{ "<leader>ub", require("darklight").color_switch,                                           desc = "Switch from Light to Dark Mode" },
+		{ "<leader>dt", "<cmd>tabclose<CR>",                                                         desc = "Destroy Current Tab" },
 
 		-- Terminal Stuff
 		{ "<leader>t",  desc = "Terminal Bindings" },
 		{ "<leader>tg", function() Snacks.lazygit() end,                                             desc = "LazyGit" },
-		{ "<leader>to", "<cmd>ToggleTerm size=80 direction=vertical<CR>",                            desc = "Toggle Vertical Terminal" },
-		{ "<leader>tO", "<cmd>TermNew size=80 direction=vertical<CR>",                               desc = "New Vertical Terminal" },
+		{ "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<CR>",                            desc = "Toggle Vertical Terminal" },
+		{ "<leader>tV", "<cmd>TermNew size=80 direction=vertical<CR>",                               desc = "New Vertical Terminal" },
 		{ "<leader>tf", "<cmd>ToggleTerm size=80 direction=float<CR>",                               desc = "Toggle Floating Terminal" },
 		{ "<leader>tF", "<cmd>TermNew size=80 direction=float<CR>",                                  desc = "New Floating Terminal" },
+		{ "<leader>th", "<cmd>ToggleTerm size=25 direction=horizontal<CR>",                          desc = "Toggle Floating Terminal" },
+		{ "<leader>tH", "<cmd>TermNew size=25 direction=horizontal<CR>",                             desc = "New Floating Terminal" },
+		{ "<leader>tw", "<cmd>ToggleTerm direction=tab<CR>",                                         desc = "Toggle Floating Terminal" },
+		{ "<leader>tW", "<cmd>TermNew direction=tab<CR>",                                            desc = "New Floating Terminal" },
 		-- Terminal Focusing
 		{ "<leader>tt", "<cmd>TermSelect<CR>",                                                       desc = "Select Terminal" },
 		-- Sending Selction to Terminal
-		{ "<A-x>",      "<cmd>ToggleTerm size=80 direction=float<CR>",                               desc = "Toggle Floating Terminal",      mode = { "i", "t", "n" } },
-		{ "<A-x>",      "<cmd>ToggleTermSendVisualSelection 1<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t1", "<cmd>ToggleTermSendVisualSelection 1<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t2", "<cmd>ToggleTermSendVisualSelection 2<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t3", "<cmd>ToggleTermSendVisualSelection 3<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t4", "<cmd>ToggleTermSendVisualSelection 4<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t5", "<cmd>ToggleTermSendVisualSelection 5<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t6", "<cmd>ToggleTermSendVisualSelection 6<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t7", "<cmd>ToggleTermSendVisualSelection 7<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t8", "<cmd>ToggleTermSendVisualSelection 8<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
-		{ "<leader>t9", "<cmd>ToggleTermSendVisualSelection 9<CR>",                                  desc = "Send Selection to Terminal",    mode = { "v" } },
+		{ "<A-x>",      "<cmd>ToggleTerm size=80 direction=float<CR>",                               desc = "Toggle Floating Terminal",     mode = { "i", "t", "n" } },
+		{ "<A-x>",      "<cmd>ToggleTermSendVisualSelection 1<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t1", "<cmd>ToggleTermSendVisualSelection 1<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t2", "<cmd>ToggleTermSendVisualSelection 2<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t3", "<cmd>ToggleTermSendVisualSelection 3<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t4", "<cmd>ToggleTermSendVisualSelection 4<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t5", "<cmd>ToggleTermSendVisualSelection 5<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t6", "<cmd>ToggleTermSendVisualSelection 6<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t7", "<cmd>ToggleTermSendVisualSelection 7<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t8", "<cmd>ToggleTermSendVisualSelection 8<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
+		{ "<leader>t9", "<cmd>ToggleTermSendVisualSelection 9<CR>",                                  desc = "Send Selection to Terminal",   mode = { "v" } },
 	},
 
 	{
@@ -139,13 +152,16 @@ require('which-key').add {
 		{ "<A-S-j>", require("smart-splits").swap_buf_down,     desc = "Swap Window Down" },
 		{ "<A-S-h>", require("smart-splits").swap_buf_left,     desc = "Swap Window Left" },
 		-- buffer navigation
-		{ "<A-o>",   esc_it .. "<cmd>bnext<CR>",                desc = "Next Buffer" },
-		{ "<A-i>",   esc_it .. "<cmd>bprev<CR>",                desc = "Previous Buffer" },
+		{ "<A-o>",   esc_it .. "<cmd>tabnext<CR>",              desc = "Next Buffer" },
+		{ "<A-i>",   esc_it .. "<cmd>tabprev<CR>",              desc = "Previous Buffer" },
+		{ "<A-S-o>", esc_it .. "<cmd>+tabmove<CR>",             desc = "Move Tab Left" },
+		{ "<A-S-i>", esc_it .. "<cmd>-tabmove<CR>",             desc = "Move Tab Right" },
 	},
 	{
 		mode = { "n", "x", "o" },
-		{ "s", require('flash').remote,     desc = "Leap" },
-		{ "S", require('flash').treesitter, desc = "Select Treesitter" },
+		{ "s",         require('flash').remote,      desc = "Leap" },
+		{ "S",         require('flash').treesitter,  desc = "Select Treesitter" },
+		{ "<leader>S", "<cmd>Tabby jump_to_tab<CR>", desc = "Leap to Tab" },
 	}
 }
 
