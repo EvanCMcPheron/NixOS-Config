@@ -59,7 +59,7 @@ require('blink.cmp').setup {
 	-- See :h blink-cmp-config-keymap for defining your own keymap
 	keymap = {
 		preset = 'default',
-		['<C-Space>'] = { 'accept' },
+		['<C-Space>'] = { 'accept', 'show' },
 	},
 
 	appearance = {
