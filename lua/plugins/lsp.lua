@@ -27,7 +27,8 @@ local lsps = {
 		}
 	},
 	{ 'clangd' },
-	{ 'rust-analyzer' }
+	{ 'rust-analyzer' },
+	{ 'gopls' }
 }
 
 vim.pack.add({
