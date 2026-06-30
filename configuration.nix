@@ -18,6 +18,7 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
+      useOSProber = true;
     };
     efi.canTouchEfiVariables = true;
   };
@@ -107,8 +108,21 @@
       google-chrome
       ghostty
       kitty
+      lazygit
+      fish
+      waybar
+      wofi
+      hypridle
+      hyprlock
+      hyprpaper
+      hyprshot
     ];
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.agave
+    nerd-fonts.symbols-only
+  ];
 
   # Install firefox.
   # programs.firefox.enable = true;
