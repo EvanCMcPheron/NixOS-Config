@@ -1,9 +1,16 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, username, ylib, ... }:
 {
-  # TODO please change the username & home directory to your own
-  home.username = "etanheinmik";
-  home.homeDirectory = "/home/etanheinmik";
+  imports = ylib.umport {
+    path = ./modules;
+    recursive = true;
+  };
+
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "26.05";
+  };
+  programs.home-manager.enable = true;
 
   # Import files from the current configuration directory into the Nix store,
   # and create symbolic links pointing to those store files in the Home directory.
@@ -97,11 +104,6 @@
     usbutils # lsusb
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "Evan McPheron";
-    userEmail = "evancmcpheron@gmail.com";
-  };
 
   programs.starship = {
     enable = true;
@@ -147,5 +149,4 @@
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "26.05";
 }

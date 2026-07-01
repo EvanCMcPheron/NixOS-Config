@@ -141,6 +141,8 @@
     gdb
     gcc
     git
+    tree
+    lazygit
   ];
 
   hardware.graphics.package = pkgs.mesa.overrideAttrs (old: rec {

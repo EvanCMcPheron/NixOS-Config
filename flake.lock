@@ -37,10 +37,31 @@
         "type": "github"
       }
     },
+    "nypkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775762014,
+        "narHash": "sha256-Ytfywtoxw1I+baHDuwKyUeCY3/1dDxWZWy59MPlSGHg=",
+        "owner": "yunfachi",
+        "repo": "nypkgs",
+        "rev": "37b32b2f1d8677120ac346c3cf735b6fafa94776",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yunfachi",
+        "repo": "nypkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nypkgs": "nypkgs"
       }
     }
   },
