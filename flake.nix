@@ -23,13 +23,13 @@
   in  {
 
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      framework13 = nixpkgs.lib.nixosSystem {
 
         specialArgs = { 
           inherit inputs username system ylib;
         };
         modules = [
-          ./hosts/nixos
+          ./hosts/framework13
 
           home-manager.nixosModules.home-manager 
           {
