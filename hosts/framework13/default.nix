@@ -104,19 +104,6 @@
     description = "Evan McPheron";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-      google-chrome
-      ghostty
-      kitty
-      lazygit
-      fish
-      waybar
-      wofi
-      hypridle
-      hyprlock
-      hyprpaper
-      hyprshot
-      firefox
     ];
   };
 

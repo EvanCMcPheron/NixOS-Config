@@ -1,6 +1,7 @@
 {
   description = "Main Configuration Flake";
 
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
@@ -13,23 +14,32 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs"; # locks inputs.nixpkgs to our nixpkgs url to ensure versioning consistanc
     };
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
+
 
   outputs = { self, nixpkgs, home-manager, nypkgs, ... }@inputs:
   let 
     username = "etanheinmik";
     system = "x86_64-linux";
     ylib = nypkgs.lib.${system};
+    overlays = [
+      inputs.neovim-nightly-overlay.overlays.default
+    ];
   in  {
 
     nixosConfigurations = {
-      framework13 = nixpkgs.lib.nixosSystem {
 
-        specialArgs = { 
-          inherit inputs username system ylib;
-        };
+      framework13 = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs username system ylib; };
         modules = [
           ./hosts/framework13
+
+          {
+            nixpkgs.overlays = overlays;
+          }
 
           home-manager.nixosModules.home-manager 
           {

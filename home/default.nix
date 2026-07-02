@@ -102,6 +102,20 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    kdePackages.kate
+    google-chrome
+    ghostty
+    kitty
+    lazygit
+    fish
+    waybar
+    wofi
+    hypridle
+    hyprlock
+    hyprpaper
+    hyprshot
+    firefox
   ];
 
 
