@@ -49,7 +49,10 @@
 
             home-manager.users.${username} = import ./home;
           }
-        ];
+        ] ++ ( ylib.umport{
+				paths = [ ./modules ];
+				recursive = true;
+			} );
       };
     };
   };

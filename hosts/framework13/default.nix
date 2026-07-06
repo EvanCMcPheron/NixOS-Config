@@ -5,10 +5,11 @@
 { config, pkgs, inputs, ... }:
 
 {
+  networking.hostName = "framework13";
   imports =
     [
       ./hardware-configuration.nix
-    ];
+    ] ;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -18,19 +19,23 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = true;
+      useOSProber = false;
     };
     efi.canTouchEfiVariables = true;
   };
-  specialisation.memory-debug.configuration = {
-    boot.kernelParams = [
-      "slub_debug=FZP"
-      "page_poison=1"
-      "init_on_free=1"
-    ];
-  };
 
-  networking.hostName = "framework13";
+  boot.loader.grub.extraEntries = ''
+  menuentry "Arch Linux" --class arch {
+    insmod part_gpt
+    insmod fat
+    insmod ext2
+    search --no-floppy --fs-uuid --set=root C279-9DC6
+    linux  /vmlinuz-linux root=UUID=c024726c-0c53-4506-81ef-15e64b079a1b rw
+    initrd /intel-ucode.img /initramfs-linux.img
+  }
+'';
+
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -60,21 +65,24 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = {
+	  enable = true;
+    wayland.enable = true;
+  };
+  services.desktopManager.plasma6.enable = false;
 
   # Enable Hyprland
   programs.hyprland.enable = true;
   services.displayManager.defaultSession = "hyprland";
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "";
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -96,21 +104,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."etanheinmik" = {
-    isNormalUser = true;
-    description = "Evan McPheron";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-  };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.agave
-    nerd-fonts.symbols-only
-  ];
+  services.xserver.libinput.enable = true;
 
   # Install firefox.
   # programs.firefox.enable = true;
