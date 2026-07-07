@@ -19,5 +19,6 @@
     hyprpaper
     hyprshot
     firefox
+    adwaita-icon-theme
   ];
 }
