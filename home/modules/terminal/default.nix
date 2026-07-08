@@ -52,6 +52,8 @@
     bashrcExtra = ''
       export QT_QPA_PLATFORMTHEME=gtk2
 
+      export EDITOR=nvim
+
       export PATH=/home/etanheinmik/repos/swww/target/release/:$PATH
       export PATH=/home/etanheinmik/repos/swww/target/release/swww:$PATH
       export PATH=/home/etanheinmik/repos/woomer/target/release/woomer:$PATH
@@ -69,6 +71,7 @@
       fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'";
       nmls="nmcli device wifi list";
       nmcn="nmcli device wifi connect --ask";
+      snrs="sudo nixos-rebuild switch";
     };
   };
 }

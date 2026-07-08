@@ -13,4 +13,6 @@
     tree
     lazygit
   ];
+
+  programs.neovim.defaultEditor = true;
 }
