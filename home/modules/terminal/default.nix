@@ -15,6 +15,8 @@
     yq-go # yaml processor https://github.com/mikefarah/yq
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    bat
+    zoxide
 
     # misc
     cowsay
@@ -42,6 +44,10 @@
       aws.disabled = true;
       gcloud.disabled = true;
       line_break.disabled = true;
+      nix_shell = {
+        format = "via [$symbol$state]($style) ";
+        symbol = "❄️ ";
+      };
     };
   };
 
@@ -72,6 +78,39 @@
       nmls="nmcli device wifi list";
       nmcn="nmcli device wifi connect --ask";
       snrs="sudo nixos-rebuild switch";
+    };
+  };
+
+  programs.fish = {
+    enable = true;
+
+    plugins = [
+      # Enable a plugin (here grc for colorized command output) from nixpkgs
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+    ];
+    interactiveShellInit = ''
+      set fish_greeting
+
+      fish_vi_key_bindings --no-erase insert
+
+      # cursor shape per mode (needs a terminal that supports DECSCUSR)
+      set -g fish_cursor_default block
+      set -g fish_cursor_insert line
+      set -g fish_cursor_replace_one underscore
+      set -g fish_cursor_visual block
+    '';
+    shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'";
+      nmls="nmcli device wifi list";
+      nmcn="nmcli device wifi connect --ask";
+      snrs="sudo nixos-rebuild switch";
+      python-venv="source ~/.pyvenv/bin/activate";
+      l  = "eza --icons -ab --group-directories-first --git --color-scale all --color always -lh -a -S";
+      ll  = "eza --icons -ab --group-directories-first --git --color-scale all --color always -lh --sort=date -S";
+      lt  = "eza --icons -ab --group-directories-first --git --color-scale all --color always -lb --sort=date -S --tree --level";
+      cat = "bat";
     };
   };
 }

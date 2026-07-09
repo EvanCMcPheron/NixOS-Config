@@ -12,7 +12,17 @@
     git
     tree
     lazygit
+    fishPlugins.done
+    fishPlugins.fzf-fish
+    fishPlugins.forgit
+    fishPlugins.hydro
+    fzf
+    fishPlugins.grc
+    grc
   ];
 
   programs.neovim.defaultEditor = true;
+
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 }
