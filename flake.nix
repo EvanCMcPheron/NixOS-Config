@@ -26,6 +26,10 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ambxst.url = "github:Axenide/Ambxst";
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
 
@@ -36,6 +40,7 @@
     ylib = nypkgs.lib.${system};
     overlays = [
       inputs.neovim-nightly-overlay.overlays.default
+      inputs.nix-cachyos-kernel.overlays.pinned
     ];
   in  {
 

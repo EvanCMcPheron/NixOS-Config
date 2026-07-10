@@ -18,6 +18,7 @@ hl.bind(mainMod .. " + CTRL + M",   hl.dsp.exit())
 hl.bind(mainMod .. " + ALT + L",    hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + CTRL + P",   hl.dsp.exec_cmd("loginctl lock-session ; sudo systemctl hibernate"))
 hl.bind(mainMod .. " + SHIFT + P",  hl.dsp.exec_cmd("systemctl poweroff"))
+hl.bind(mainMod .. " + SHIFT + T",  hl.dsp.exec_cmd("theme-toggle"))
 
 -- Window management
 hl.bind(mainMod .. " + F",          hl.dsp.window.float({ action = "toggle" }))
