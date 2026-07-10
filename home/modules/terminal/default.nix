@@ -91,7 +91,7 @@
     interactiveShellInit = ''
       set fish_greeting
 
-      fish_vi_key_bindings --no-erase insert
+      fish_vi_key_bindings
 
       # cursor shape per mode (needs a terminal that supports DECSCUSR)
       set -g fish_cursor_default block
