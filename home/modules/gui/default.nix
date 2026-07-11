@@ -20,6 +20,5 @@
     hyprshot
     firefox
     adwaita-icon-theme
-    brightnessctl
   ];
 }
