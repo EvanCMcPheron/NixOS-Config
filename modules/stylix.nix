@@ -7,7 +7,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
     image = ../wallpapers/dark.jpg;
 
     fonts = {
@@ -28,7 +28,7 @@
     environment.etc."current-theme".text = lib.mkForce "light";
     stylix = {
       polarity = lib.mkForce "light";
-      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/rose-pine-dawn.yaml";
+      base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/gruvbox-light-medium.yaml";
       image = lib.mkForce ../wallpapers/light.jpg;
     };
   };
