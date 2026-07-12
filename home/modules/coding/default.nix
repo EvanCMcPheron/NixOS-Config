@@ -3,7 +3,7 @@
 	home.packages = with pkgs; [
 		neovim
 		claude-code
-    # neovide
+    neovide
 	];
 
 	xdg.configFile."nvim".source = ./nvim;
