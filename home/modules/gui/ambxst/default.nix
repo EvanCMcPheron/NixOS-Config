@@ -72,4 +72,26 @@ in
     fi
     run mv "$cacheFile.tmp" "$cacheFile"
   '';
+
+  # Works around an Ambxst bug: AxctlService.qml never restarts the axctl
+  # daemon if it dies (only warns), while it retries `axctl subscribe` every
+  # 1s forever, spamming JSON-parse errors into a dead socket. See
+  # ../hypr/scripts/axctl-watchdog.sh for the fix, which only starts a
+  # daemon when none is already alive so it can't race Ambxst's own.
+  systemd.user.services.axctl-watchdog = {
+    Unit.Description = "Restart axctl daemon if Ambxst's own supervision missed it";
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${config.home.homeDirectory}/.config/hypr/scripts/axctl-watchdog.sh";
+    };
+  };
+
+  systemd.user.timers.axctl-watchdog = {
+    Unit.Description = "Periodically check the axctl daemon is alive";
+    Timer = {
+      OnStartupSec = "30s";
+      OnUnitActiveSec = "30s";
+    };
+    Install.WantedBy = [ "timers.target" ];
+  };
 }
