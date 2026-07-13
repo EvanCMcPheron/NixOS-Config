@@ -36,7 +36,7 @@ hl.bind(mainMod .. " + v",          hl.dsp.layout("togglesplit"))
 -- hl.bind("CTRL + PRINT",             hl.dsp.exec_cmd("hyprshot -m window"))
 -- hl.bind("PRINT",                    hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind("PRINT",                    hl.dsp.exec_cmd("ambxst run screenshot"))
-hl.bind(mainMod .. "PRINT",         hl.dsp.exec_cmd("ambxst run tools"))
+hl.bind(mainMod .. " + PRINT",         hl.dsp.exec_cmd("ambxst run tools"))
 
 -- Focus (vim motions)
 hl.bind(mainMod .. " + h",          hl.dsp.focus({ direction = "left" }))
