@@ -1,7 +1,7 @@
 -- Shared variables — globals so sub-modules can reference them without imports
 terminal     = "ghostty"
 fileManager  = "nautilus"
-menu         = "wofi -S run"
+menu         = "ambxst run launcher"
 mail         = "mailspring --password-store=\"gnome-libsecret\""
 mainMonitor  = "eDP-1"
 IDE          = "neovide"

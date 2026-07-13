@@ -17,8 +17,11 @@ hl.bind(mainMod .. " + C",          hl.dsp.window.close())
 hl.bind(mainMod .. " + CTRL + M",   hl.dsp.exit())
 hl.bind(mainMod .. " + ALT + L",    hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + CTRL + P",   hl.dsp.exec_cmd("loginctl lock-session ; sudo systemctl hibernate"))
-hl.bind(mainMod .. " + SHIFT + P",  hl.dsp.exec_cmd("systemctl poweroff"))
+hl.bind(mainMod .. " + SHIFT + P",  hl.dsp.exec_cmd("ambxst run powermenu"))
 hl.bind(mainMod .. " + SHIFT + T",  hl.dsp.exec_cmd("theme-toggle"))
+hl.bind(mainMod .. " + SHIFT + SPACE",  hl.dsp.exec_cmd("ambxst run dashboard"))
+hl.bind(mainMod .. " + E",  hl.dsp.exec_cmd("ambxst run emoji"))
+hl.bind(mainMod .. " + SHIFT + E",  hl.dsp.exec_cmd("ambxst run cipboard"))
 
 -- Window management
 hl.bind(mainMod .. " + F",          hl.dsp.window.float({ action = "toggle" }))
@@ -29,9 +32,11 @@ hl.bind(mainMod .. " + CTRL + v",   hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + v",          hl.dsp.layout("togglesplit"))
 
 -- Screenshots
-hl.bind("CTRL + SHIFT + PRINT",     hl.dsp.exec_cmd("hyprshot -m output"))
-hl.bind("CTRL + PRINT",             hl.dsp.exec_cmd("hyprshot -m window"))
-hl.bind("PRINT",                    hl.dsp.exec_cmd("hyprshot -m region"))
+-- hl.bind("CTRL + SHIFT + PRINT",     hl.dsp.exec_cmd("hyprshot -m output"))
+-- hl.bind("CTRL + PRINT",             hl.dsp.exec_cmd("hyprshot -m window"))
+-- hl.bind("PRINT",                    hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind("PRINT",                    hl.dsp.exec_cmd("ambxst run screenshot"))
+hl.bind(mainMod .. "PRINT",         hl.dsp.exec_cmd("ambxst run tools"))
 
 -- Focus (vim motions)
 hl.bind(mainMod .. " + h",          hl.dsp.focus({ direction = "left" }))
