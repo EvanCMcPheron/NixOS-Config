@@ -27,9 +27,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ambxst.url = "github:Axenide/Ambxst";
-
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
 

@@ -19,6 +19,7 @@
     fzf
     fishPlugins.grc
     grc
+    fd
   ];
 
   programs.neovim.defaultEditor = true;
